@@ -19,7 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
+    UITapGestureRecognizer *screenTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapScreen:)];
+    [self.view addGestureRecognizer:screenTapGestureRecognizer];
+    [self.view setUserInteractionEnabled:YES];
+   }
 
 - (IBAction)tapLogin:(id)sender {
     NSString *username = self.usernameField.text;
@@ -36,6 +39,13 @@
     }];
     
 }
+
+
+
+- (void) didTapScreen:(UITapGestureRecognizer *)sender{
+    [self.view endEditing:YES];
+}
+
 
 - (IBAction)tapSignUp:(id)sender {
     // initialize a user object

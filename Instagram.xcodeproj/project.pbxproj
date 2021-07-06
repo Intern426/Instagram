@@ -21,6 +21,7 @@
 		DE1AB31A2694EC6300B530D9 /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE1AB3192694EC6300B530D9 /* Key.plist */; };
 		DE1AB31E2694F99A00B530D9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AB31D2694F99A00B530D9 /* LoginViewController.m */; };
 		DE1AB3212694FF1A00B530D9 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AB3202694FF1A00B530D9 /* HomeViewController.m */; };
+		DE33C21826951662008B791A /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE33C21726951662008B791A /* PhotoMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		DE1AB31D2694F99A00B530D9 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DE1AB31F2694FF1A00B530D9 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		DE1AB3202694FF1A00B530D9 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		DE33C21626951662008B791A /* PhotoMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoMapViewController.h; sourceTree = "<group>"; };
+		DE33C21726951662008B791A /* PhotoMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoMapViewController.m; sourceTree = "<group>"; };
 		F027D2BD6CD8FB59DD7B7D48 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +192,8 @@
 				DE1AB31D2694F99A00B530D9 /* LoginViewController.m */,
 				DE1AB31F2694FF1A00B530D9 /* HomeViewController.h */,
 				DE1AB3202694FF1A00B530D9 /* HomeViewController.m */,
+				DE33C21626951662008B791A /* PhotoMapViewController.h */,
+				DE33C21726951662008B791A /* PhotoMapViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE33C21826951662008B791A /* PhotoMapViewController.m in Sources */,
 				DE1AB2E62694E8F000B530D9 /* AppDelegate.m in Sources */,
 				DE1AB2F72694E8F100B530D9 /* main.m in Sources */,
 				DE1AB2E92694E8F000B530D9 /* SceneDelegate.m in Sources */,
@@ -615,7 +621,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.Instagram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.InstagramInsta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -634,7 +640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.Instagram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.InstagramInsta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
