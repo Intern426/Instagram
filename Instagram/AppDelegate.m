@@ -33,9 +33,9 @@
     
     [Parse initializeWithConfiguration:config];
     
+
     return YES;
 }
-
 
 #pragma mark - UISceneSession lifecycle
 

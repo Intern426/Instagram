@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="130.58035714285714"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--HomeViewController-->
         <scene sceneID="EgE-hB-9dJ">
             <objects>
-                <navigationController id="9Wv-6b-4kN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeViewController" title="HomeViewController" id="9Wv-6b-4kN" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="783-jU-7Iy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
