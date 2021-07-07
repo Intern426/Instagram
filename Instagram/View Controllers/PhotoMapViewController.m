@@ -23,7 +23,6 @@
     [self.photoView setUserInteractionEnabled:YES];
     
     // Do any additional setup after loading the view.
-    
 }
 
 - (void) didTapPhoto:(UITapGestureRecognizer *)sender{
@@ -62,9 +61,7 @@
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
     }
-    
 }
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
@@ -104,6 +101,7 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+        [self.delegate didShare];
         [self dismissViewControllerAnimated:true completion:nil];
     }];
 }

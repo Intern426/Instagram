@@ -20,10 +20,11 @@
     // Configure the view for the selected state
 }
 
-/*-(void) setPost:(Post *)post{
+-(void) setPost:(Post *)post{
     _post = post;
-    self.captionLabel.text = post.caption;
-    Post 
-}*/
+    self.captionLabel.text = post[@"caption"];
+    self.photoView.file = post[@"image"];
+    [self.photoView loadInBackground];
+}
 
 @end
