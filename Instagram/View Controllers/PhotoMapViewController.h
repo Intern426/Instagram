@@ -6,10 +6,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PhotoMapViewController : UIViewController 
+@protocol PhotoMapViewControllerDelegate
+
+-(void) savePost: (Post*) post;
+
+@end
+
+@interface PhotoMapViewController : UIViewController
+
+@property (nonatomic, weak) id<PhotoMapViewControllerDelegate> delegate;
 
 @end
 

@@ -104,7 +104,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="I9N-6s-Cts">
                             <connections>
-                                <segue destination="xOY-pi-Hgj" kind="presentation" id="yRe-ax-IT0"/>
+                                <segue destination="xOY-pi-Hgj" kind="presentation" modalPresentationStyle="fullScreen" id="yRe-ax-IT0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -116,16 +116,16 @@
         <!--Navigation Controller-->
         <scene sceneID="kVO-sY-nIp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bRR-W3-ta9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="xOY-pi-Hgj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Mv-CA-ej5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Pjl-l4-bEE" kind="relationship" relationship="rootViewController" id="v7g-aI-hef"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bRR-W3-ta9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2671" y="131"/>
         </scene>
@@ -134,11 +134,17 @@
             <objects>
                 <viewController id="Pjl-l4-bEE" customClass="PhotoMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KH4-ou-Ro2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zUY-NY-4eU">
+                                <rect key="frame" x="20" y="341" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="bzJ-Sk-oME">
-                                <rect key="frame" x="0.0" y="56" width="194" height="178"/>
+                                <rect key="frame" x="110" y="130" width="194" height="178"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" button="YES" image="YES"/>
@@ -148,24 +154,24 @@
                                     <outletCollection property="gestureRecognizers" destination="TMa-fs-VNZ" appends="YES" id="4BY-tt-F15"/>
                                 </connections>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5e0-NV-ZUe">
-                                <rect key="frame" x="202" y="62" width="192" height="172"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <accessibility key="accessibilityConfiguration" hint="Write a caption"/>
-                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Il9-oO-O5v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="K8Z-BA-XjO">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="KrY-64-7F8"/>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="5BZ-PJ-eaD"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="KrY-64-7F8">
+                            <connections>
+                                <action selector="didTapCancel:" destination="Pjl-l4-bEE" id="cUg-eS-cjt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="5BZ-PJ-eaD">
+                            <connections>
+                                <action selector="didTapSave:" destination="Pjl-l4-bEE" id="HNA-YA-c3B"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="captionField" destination="zUY-NY-4eU" id="7Gu-aq-Mmt"/>
                         <outlet property="photoView" destination="bzJ-Sk-oME" id="Hqk-rN-KTe"/>
                     </connections>
                 </viewController>
@@ -182,9 +188,6 @@
     <resources>
         <image name="image_placeholder" width="375" height="375"/>
         <image name="insta_camera_btn" width="25" height="25"/>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -6,9 +6,11 @@
 //
 
 #import "PhotoMapViewController.h"
+#import "Post.h"
 
 @interface PhotoMapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
+@property (weak, nonatomic) IBOutlet UITextField *captionField;
 
 @end
 
@@ -21,10 +23,6 @@
     [self.photoView setUserInteractionEnabled:YES];
     
     // Do any additional setup after loading the view.
-    
-}
-
-- (IBAction)tapPhoto:(id)sender {
     
 }
 
@@ -80,6 +78,19 @@
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)didTapCancel:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)didTapSave:(id)sender {
+    Post *post = [[Post alloc]init];
+    post.author = PFUser.currentUser;
+    post.caption = self.captionField.text;
+    [self.delegate savePost:post];
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 
 /*
  #pragma mark - Navigation
