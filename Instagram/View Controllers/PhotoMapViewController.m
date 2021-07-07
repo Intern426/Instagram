@@ -83,12 +83,29 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 - (IBAction)didTapSave:(id)sender {
-    Post *post = [[Post alloc]init];
-    post.author = PFUser.currentUser;
-    post.caption = self.captionField.text;
-    [self.delegate savePost:post];
-    [self dismissViewControllerAnimated:true completion:nil];
+    [Post postUserImage:self.photoView.image withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Successfully saved in database!");
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        [self dismissViewControllerAnimated:true completion:nil];
+    }];
 }
 
 

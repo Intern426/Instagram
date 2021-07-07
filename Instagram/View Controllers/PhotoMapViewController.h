@@ -10,15 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol PhotoMapViewControllerDelegate
-
--(void) savePost: (Post*) post;
-
-@end
-
 @interface PhotoMapViewController : UIViewController
 
-@property (nonatomic, weak) id<PhotoMapViewControllerDelegate> delegate;
 
 @end
 

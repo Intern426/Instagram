@@ -11,8 +11,9 @@
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
 #import "PhotoMapViewController.h"
+#import "PostCell.h"
 
-@interface HomeViewController () <PhotoMapViewControllerDelegate>
+@interface HomeViewController ()
 @property (strong, nonatomic) NSMutableArray* posts;
 @end
 
@@ -44,20 +45,11 @@
 
 
  #pragma mark - Navigation
- 
+ /*
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
-     UINavigationController *navigationControl = [segue destinationViewController];
-     PhotoMapViewController *photoController = (PhotoMapViewController*) navigationControl.topViewController;
-     photoController.delegate = self;
- }
- 
-
-- (void)savePost:(nonnull Post *)post {
-    [self.posts addObject:post];
-}
-
+ }*/
 
 @end
