@@ -68,7 +68,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="keh-G9-vDi"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="130.58035714285714"/>
+            <point key="canvasLocation" x="993" y="-720"/>
         </scene>
         <!--HomeViewController-->
         <scene sceneID="EgE-hB-9dJ">
@@ -98,6 +98,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="ZJV-Hd-Qwu">
+                                    <rect key="frame" x="0.0" y="254.00000034679067" width="414" height="76"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="205" id="KJv-Dr-prs" customClass="PostCell">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="205"/>
@@ -132,6 +136,7 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="Ky3-oJ-azX" id="UtN-lz-JU9"/>
                                             <outlet property="photoView" destination="SVQ-GF-Y68" id="4DJ-1M-cKt"/>
+                                            <segue destination="ekk-fG-r7L" kind="show" id="lpL-bZ-Pbr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -148,11 +153,12 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="I9N-6s-Cts">
                             <connections>
-                                <segue destination="xOY-pi-Hgj" kind="presentation" modalPresentationStyle="fullScreen" id="yRe-ax-IT0"/>
+                                <segue destination="xOY-pi-Hgj" kind="presentation" identifier="postSegue" modalPresentationStyle="fullScreen" id="yRe-ax-IT0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingIndicatorView" destination="ZJV-Hd-Qwu" id="FNj-JG-ogb"/>
                         <outlet property="tableView" destination="7OV-9h-YrT" id="FXx-cT-gQP"/>
                     </connections>
                 </viewController>
@@ -175,6 +181,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRR-W3-ta9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2671" y="131"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ytj-Gh-ZDA">
+            <objects>
+                <navigationController id="ekk-fG-r7L" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Ylg-CS-CYi"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D1I-yB-ii3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="98b-wj-rI7" kind="relationship" relationship="rootViewController" id="0Bi-JM-z25"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04j-cg-5t1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1812" y="932"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="NZN-0e-8vZ">
+            <objects>
+                <viewController id="98b-wj-rI7" customClass="DetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B1e-Ix-m05">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9y-My-fX5">
+                                <rect key="frame" x="50" y="133" width="314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="EWB-vu-9cu" customClass="PFImageView">
+                                <rect key="frame" x="50" y="198" width="314" height="308.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="308.5" id="264-UA-NPz"/>
+                                    <constraint firstAttribute="width" constant="314" id="DUw-c2-Yzj"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zX-aI-qYJ">
+                                <rect key="frame" x="50" y="615.5" width="314" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created At" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lez-e8-IAY">
+                                <rect key="frame" x="50" y="162" width="314" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BN5-UB-h2R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EWB-vu-9cu" firstAttribute="leading" secondItem="H9y-My-fX5" secondAttribute="leading" id="4Ey-3n-jpe"/>
+                            <constraint firstItem="Lez-e8-IAY" firstAttribute="top" secondItem="H9y-My-fX5" secondAttribute="bottom" constant="8" id="9SG-k6-TG2"/>
+                            <constraint firstItem="Lez-e8-IAY" firstAttribute="leading" secondItem="BN5-UB-h2R" secondAttribute="leading" constant="50" id="9kB-XZ-qvY"/>
+                            <constraint firstItem="H9y-My-fX5" firstAttribute="leading" secondItem="BN5-UB-h2R" secondAttribute="leading" constant="50" id="BKV-aL-Af1"/>
+                            <constraint firstItem="H9y-My-fX5" firstAttribute="top" secondItem="BN5-UB-h2R" secondAttribute="top" constant="45" id="FvE-ua-qzZ"/>
+                            <constraint firstItem="0zX-aI-qYJ" firstAttribute="leading" secondItem="BN5-UB-h2R" secondAttribute="leading" constant="50" id="MEr-gI-hl4"/>
+                            <constraint firstItem="BN5-UB-h2R" firstAttribute="trailing" secondItem="Lez-e8-IAY" secondAttribute="trailing" constant="50" id="Qm5-NC-nyY"/>
+                            <constraint firstItem="EWB-vu-9cu" firstAttribute="top" secondItem="Lez-e8-IAY" secondAttribute="bottom" constant="21" id="T7w-nZ-iwc"/>
+                            <constraint firstItem="BN5-UB-h2R" firstAttribute="trailing" secondItem="EWB-vu-9cu" secondAttribute="trailing" constant="50" id="dZg-TA-ojD"/>
+                            <constraint firstItem="Lez-e8-IAY" firstAttribute="leading" secondItem="H9y-My-fX5" secondAttribute="leading" id="fW1-KC-Hjc"/>
+                            <constraint firstItem="BN5-UB-h2R" firstAttribute="trailing" secondItem="H9y-My-fX5" secondAttribute="trailing" constant="50" id="iuZ-cw-P5d"/>
+                            <constraint firstItem="EWB-vu-9cu" firstAttribute="leading" secondItem="H9y-My-fX5" secondAttribute="leading" id="j8v-b3-jOO"/>
+                            <constraint firstItem="BN5-UB-h2R" firstAttribute="trailing" secondItem="0zX-aI-qYJ" secondAttribute="trailing" constant="50" id="u1d-a8-49l"/>
+                            <constraint firstItem="BN5-UB-h2R" firstAttribute="bottom" secondItem="0zX-aI-qYJ" secondAttribute="bottom" constant="226" id="yzm-dh-2x9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mLv-Oq-iU5"/>
+                    <connections>
+                        <outlet property="captionLabel" destination="0zX-aI-qYJ" id="VVv-1l-g3S"/>
+                        <outlet property="dateLabel" destination="Lez-e8-IAY" id="HVo-fZ-UwU"/>
+                        <outlet property="imageView" destination="EWB-vu-9cu" id="Eae-cO-jP9"/>
+                        <outlet property="usernameLabel" destination="H9y-My-fX5" id="VFY-Ax-Etw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BU9-2k-9Ud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2702.898550724638" y="930.80357142857133"/>
         </scene>
         <!--Photo Map View Controller-->
         <scene sceneID="h1H-Q5-gfj">
@@ -237,6 +325,9 @@
         <image name="insta_camera_btn" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

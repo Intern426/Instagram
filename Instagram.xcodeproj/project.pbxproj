@@ -24,6 +24,7 @@
 		DE22542E26955252006C9A13 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22542D26955252006C9A13 /* Post.m */; };
 		DE22543226955AD0006C9A13 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22543126955AD0006C9A13 /* PostCell.m */; };
 		DE33C21826951662008B791A /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE33C21726951662008B791A /* PhotoMapViewController.m */; };
+		DE932C4C26963CCE009025A0 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE932C4B26963CCE009025A0 /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		DE22543126955AD0006C9A13 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		DE33C21626951662008B791A /* PhotoMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoMapViewController.h; sourceTree = "<group>"; };
 		DE33C21726951662008B791A /* PhotoMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoMapViewController.m; sourceTree = "<group>"; };
+		DE932C4A26963CCE009025A0 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		DE932C4B26963CCE009025A0 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		F027D2BD6CD8FB59DD7B7D48 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,6 +205,8 @@
 				DE1AB3202694FF1A00B530D9 /* HomeViewController.m */,
 				DE33C21626951662008B791A /* PhotoMapViewController.h */,
 				DE33C21726951662008B791A /* PhotoMapViewController.m */,
+				DE932C4A26963CCE009025A0 /* DetailsViewController.h */,
+				DE932C4B26963CCE009025A0 /* DetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				DE22543226955AD0006C9A13 /* PostCell.m in Sources */,
 				DE1AB2E92694E8F000B530D9 /* SceneDelegate.m in Sources */,
 				DE1AB31E2694F99A00B530D9 /* LoginViewController.m in Sources */,
+				DE932C4C26963CCE009025A0 /* DetailsViewController.m in Sources */,
 				DE1AB3212694FF1A00B530D9 /* HomeViewController.m in Sources */,
 				DE22542E26955252006C9A13 /* Post.m in Sources */,
 			);
