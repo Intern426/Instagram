@@ -7,6 +7,7 @@
 
 #import "PhotoMapViewController.h"
 #import "Post.h"
+#import "MBProgressHUD.h"
 
 @interface PhotoMapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
@@ -21,8 +22,6 @@
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPhoto:)];
     [self.photoView addGestureRecognizer:profileTapGestureRecognizer];
     [self.photoView setUserInteractionEnabled:YES];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void) didTapPhoto:(UITapGestureRecognizer *)sender{
@@ -64,7 +63,6 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     //  UIImage *editedImage = info[UIImagePickerControllerEditedImage];
@@ -95,8 +93,10 @@
 }
 
 - (IBAction)didTapSave:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage:self.photoView.image withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error != nil) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"Successfully saved in database!");
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -105,7 +105,6 @@
         [self dismissViewControllerAnimated:true completion:nil];
     }];
 }
-
 
 /*
  #pragma mark - Navigation

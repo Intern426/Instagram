@@ -25,6 +25,8 @@
 		DE22543226955AD0006C9A13 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22543126955AD0006C9A13 /* PostCell.m */; };
 		DE33C21826951662008B791A /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE33C21726951662008B791A /* PhotoMapViewController.m */; };
 		DE932C4C26963CCE009025A0 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE932C4B26963CCE009025A0 /* DetailsViewController.m */; };
+		DEC25DD0269670B500837DA6 /* PictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC25DCF269670B500837DA6 /* PictureCell.m */; };
+		DEC25DD3269671F000837DA6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC25DD2269671F000837DA6 /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,10 @@
 		DE33C21726951662008B791A /* PhotoMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoMapViewController.m; sourceTree = "<group>"; };
 		DE932C4A26963CCE009025A0 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		DE932C4B26963CCE009025A0 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		DEC25DCE269670B500837DA6 /* PictureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureCell.h; sourceTree = "<group>"; };
+		DEC25DCF269670B500837DA6 /* PictureCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureCell.m; sourceTree = "<group>"; };
+		DEC25DD1269671F000837DA6 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		DEC25DD2269671F000837DA6 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		F027D2BD6CD8FB59DD7B7D48 /* Pods-Instagram-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +213,8 @@
 				DE33C21726951662008B791A /* PhotoMapViewController.m */,
 				DE932C4A26963CCE009025A0 /* DetailsViewController.h */,
 				DE932C4B26963CCE009025A0 /* DetailsViewController.m */,
+				DEC25DD1269671F000837DA6 /* ProfileViewController.h */,
+				DEC25DD2269671F000837DA6 /* ProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -225,6 +233,8 @@
 			children = (
 				DE22543026955AD0006C9A13 /* PostCell.h */,
 				DE22543126955AD0006C9A13 /* PostCell.m */,
+				DEC25DCE269670B500837DA6 /* PictureCell.h */,
+				DEC25DCF269670B500837DA6 /* PictureCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,9 +481,11 @@
 				DE1AB2E62694E8F000B530D9 /* AppDelegate.m in Sources */,
 				DE1AB2F72694E8F100B530D9 /* main.m in Sources */,
 				DE22543226955AD0006C9A13 /* PostCell.m in Sources */,
+				DEC25DD0269670B500837DA6 /* PictureCell.m in Sources */,
 				DE1AB2E92694E8F000B530D9 /* SceneDelegate.m in Sources */,
 				DE1AB31E2694F99A00B530D9 /* LoginViewController.m in Sources */,
 				DE932C4C26963CCE009025A0 /* DetailsViewController.m in Sources */,
+				DEC25DD3269671F000837DA6 /* ProfileViewController.m in Sources */,
 				DE1AB3212694FF1A00B530D9 /* HomeViewController.m in Sources */,
 				DE22542E26955252006C9A13 /* Post.m in Sources */,
 			);
