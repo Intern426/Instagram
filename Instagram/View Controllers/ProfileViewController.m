@@ -8,14 +8,19 @@
 #import "ProfileViewController.h"
 #import "PictureCell.h"
 #import "Parse/Parse.h"
+#import "Post.h"
+#import "MBProgressHUD.h"
 
-@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileView;
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet PFImageView *profileView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSMutableArray* posts;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButtonItem;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -30,19 +35,26 @@
     PFUser *user = PFUser.currentUser;
     self.usernameLabel.text = user.username;
     
+    [self.loadingIndicator startAnimating];
+    
     NSLog(@"%@", user);
     if (user[@"image"]) {
-        
+        self.profileView.file = user[@"image"];
+        [self.profileView loadInBackground];
     } else {
         [self.profileView setImage:[UIImage imageNamed:@"image_placeholder"]];
     }
+    
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPhoto:)];
+    [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileView setUserInteractionEnabled:YES];
+    
     
     [self loadPosts];
     [self setupLayout];
 }
 
 -(void) setupLayout{
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadPosts) forControlEvents:UIControlEventValueChanged]; //Deprecated and only used for older objects
     // So do it on self, call the method, and then update interface as needed
@@ -60,11 +72,8 @@
 
 -(void) loadPosts{
     // construct query
-    // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author.username == %s", PFUser.currentUser.username];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query whereKey:@"author" containsString:PFUser.currentUser.objectId];
-    // [query whereKey:@"username" containsString:PFUser.currentUser.username];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
     // Needed to grab the author
@@ -80,6 +89,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
         [self.refreshControl endRefreshing];
+        [self.loadingIndicator stopAnimating];
     }];
 }
 
@@ -103,6 +113,89 @@
     return cell;
 }
 
+- (void) didTapPhoto:(UITapGestureRecognizer *)sender{
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    
+    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Take a Picture or Select Photo"
+                                                                       message:@""
+                                                                preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *takePictureAction = [UIAlertAction actionWithTitle:@"Take a Picture"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * _Nonnull action) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePickerVC animated:YES completion:nil];
+            
+            
+        }];
+        UIAlertAction *pickPictureAction = [UIAlertAction actionWithTitle:@"Select a Picture"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * _Nonnull action) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePickerVC animated:YES completion:nil];
+            
+        }];
+        [alert addAction:takePictureAction];
+        [alert addAction:pickPictureAction];
+
+        [self presentViewController:alert animated:YES completion:^{
+            // optional code for what happens after the alert controller has finished presenting
+        }];
+    } else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    // Get the image captured by the UIImagePickerController
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    
+    // Do something with the images (based on your use case)
+    self.profileView.image = originalImage;
+    self.saveButtonItem.enabled = YES;
+    // Dismiss UIImagePickerController to go back to your original view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+- (IBAction)didTapSave:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+      currentUser[@"image"] = [Post getPFFileFromImage:self.profileView.image];
+
+      [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+          [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (succeeded) {
+          // The PFUser has been saved.
+            NSLog(@"User's image was successfully saved!");
+            self.saveButtonItem.enabled = NO;
+        } else {
+          // There was a problem, check error.description
+            NSLog(@"boo.....%@", error.localizedDescription);
+        }
+      }];
+    }
+}
 
 
 @end

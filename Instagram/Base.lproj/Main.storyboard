@@ -97,7 +97,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YOE-Ps-MpB" customClass="PFImageView">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="YOE-Ps-MpB" customClass="PFImageView">
                                 <rect key="frame" x="20" y="102" width="201" height="197"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -111,6 +111,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="9Me-JJ-pJX">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="492"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PictureCell" id="ooU-9X-Aj1" customClass="PictureCell">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -142,10 +146,18 @@
                         <viewLayoutGuide key="safeArea" id="DXh-Wi-tJp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HDF-9r-yWy"/>
+                    <navigationItem key="navigationItem" id="HDF-9r-yWy">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save Changes" id="ztl-YY-EjT">
+                            <connections>
+                                <action selector="didTapSave:" destination="ZEp-3o-L6L" id="aHv-2b-2ZJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="7Sn-jx-Rj8" id="PXC-a5-a30"/>
-                        <outlet property="profileView" destination="YOE-Ps-MpB" id="3qv-8f-4ta"/>
+                        <outlet property="loadingIndicator" destination="9Me-JJ-pJX" id="qLX-9D-dhO"/>
+                        <outlet property="profileView" destination="YOE-Ps-MpB" id="ApC-VQ-1Py"/>
+                        <outlet property="saveButtonItem" destination="ztl-YY-EjT" id="mUn-JY-WbV"/>
                         <outlet property="usernameLabel" destination="2wT-fL-02o" id="J7F-GJ-d1F"/>
                     </connections>
                 </viewController>
@@ -177,11 +189,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="SVQ-GF-Y68" customClass="PFImageView">
+                                                    <rect key="frame" x="20" y="96" width="374" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="374" id="D2T-za-K2i"/>
+                                                        <constraint firstAttribute="height" constant="128" id="FIA-bM-Ziz"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" id="aLE-wu-mrp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                                    <rect key="frame" x="0.0" y="11" width="414" height="77"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-rS-Ycb">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-rS-Ycb" customClass="PFImageView">
                                                             <rect key="frame" x="19" y="11" width="77" height="55"/>
                                                             <accessibility key="accessibilityConfiguration">
                                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
@@ -219,34 +238,46 @@
                                                         <constraint firstItem="gQi-Z7-4x9" firstAttribute="top" secondItem="aLE-wu-mrp" secondAttribute="top" constant="26" id="dXr-IG-ioE"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky3-oJ-azX">
-                                                    <rect key="frame" x="20" y="272" width="374" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky3-oJ-azX">
+                                                    <rect key="frame" x="20" y="286" width="374" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="SVQ-GF-Y68" customClass="PFImageView">
-                                                    <rect key="frame" x="20" y="110" width="374" height="128"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="374" id="D2T-za-K2i"/>
-                                                        <constraint firstAttribute="height" constant="128" id="FIA-bM-Ziz"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJq-zf-HVi">
+                                                    <rect key="frame" x="21" y="262" width="64" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh1-Cd-4Sc">
+                                                    <rect key="frame" x="329" y="259" width="21" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                    <state key="normal" image="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="KJv-Dr-prs" eventType="touchUpInside" id="kt9-ld-tMq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ky3-oJ-azX" secondAttribute="bottom" constant="11.5" id="RA2-sU-Jiv"/>
-                                                <constraint firstItem="SVQ-GF-Y68" firstAttribute="top" secondItem="oww-tw-cIZ" secondAttribute="top" constant="110" id="ePM-rz-Y3w"/>
+                                                <constraint firstItem="SVQ-GF-Y68" firstAttribute="top" secondItem="oww-tw-cIZ" secondAttribute="top" constant="96" id="ePM-rz-Y3w"/>
                                                 <constraint firstItem="SVQ-GF-Y68" firstAttribute="leading" secondItem="oww-tw-cIZ" secondAttribute="leading" constant="20" id="g4I-pj-rda"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ky3-oJ-azX" secondAttribute="trailing" constant="20" id="qNk-A8-SJr"/>
-                                                <constraint firstItem="Ky3-oJ-azX" firstAttribute="top" secondItem="SVQ-GF-Y68" secondAttribute="bottom" constant="34" id="tER-vg-ZED"/>
+                                                <constraint firstItem="Ky3-oJ-azX" firstAttribute="top" secondItem="SVQ-GF-Y68" secondAttribute="bottom" constant="62" id="tER-vg-ZED"/>
                                                 <constraint firstItem="Ky3-oJ-azX" firstAttribute="leading" secondItem="oww-tw-cIZ" secondAttribute="leading" constant="20" id="v2Q-Bp-WCd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="Ky3-oJ-azX" id="UtN-lz-JU9"/>
-                                            <outlet property="dateLabel" destination="gQi-Z7-4x9" id="HoX-qf-hfB"/>
-                                            <outlet property="nameLabel" destination="ABa-Hn-oy8" id="eUz-lK-Kea"/>
+                                            <outlet property="dateLabel" destination="gQi-Z7-4x9" id="ya3-cH-8Jd"/>
+                                            <outlet property="likeButton" destination="Gh1-Cd-4Sc" id="odq-OV-DND"/>
+                                            <outlet property="likesLabel" destination="WJq-zf-HVi" id="h2g-8A-AKo"/>
+                                            <outlet property="nameLabel" destination="ABa-Hn-oy8" id="MiZ-Wb-jR6"/>
                                             <outlet property="photoView" destination="SVQ-GF-Y68" id="4DJ-1M-cKt"/>
+                                            <outlet property="profileView" destination="ddY-rS-Ycb" id="hTC-ye-nIa"/>
                                             <segue destination="ekk-fG-r7L" kind="show" identifier="detailsSegue" id="lpL-bZ-Pbr"/>
                                         </connections>
                                     </tableViewCell>
@@ -477,6 +508,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feed_tab" width="25" height="25"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="image_placeholder" width="375" height="375"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="profile_tab" width="25" height="25"/>
@@ -485,6 +517,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -14,7 +14,7 @@
 #import "PostCell.h"
 #import "DetailsViewController.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PhotoMapViewControllerDelegate, UIScrollViewDelegate, PostCellDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, PhotoMapViewControllerDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) NSMutableArray* posts;
 @property (strong, nonatomic) NSMutableArray* users;
 
@@ -22,8 +22,6 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicatorView;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
-
-
 
 @end
 
@@ -134,14 +132,11 @@ NSString *HeaderViewIdentifier = @"TableViewHeaderView";
     }
 }
 
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    cell.delegate = self;
     cell.post = self.posts[indexPath.row];
     return cell;
 }
-
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
@@ -161,14 +156,7 @@ NSString *HeaderViewIdentifier = @"TableViewHeaderView";
     }
 }
 
-
 - (void)didShare {
     [self loadPosts];
 }
-
-
-- (void)postCell:(nonnull PostCell *)postCell didTapPhoto:(nonnull PFUser *)user {
-    [self performSegueWithIdentifier:@"profileSegue" sender:user];
-}
-
 @end
