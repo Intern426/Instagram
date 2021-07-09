@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSMutableArray* posts;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButtonItem;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *dateJoinedLabel;
 
 @end
 
@@ -42,7 +43,6 @@
     [self.loadingIndicator startAnimating];
     
 
-    
     NSLog(@"%@", self.user);
     if (self.user[@"image"]) {
         self.profileView.file = self.user[@"image"];
@@ -60,6 +60,16 @@
     } else {
         [self.navigationItem setRightBarButtonItem:nil];
     }
+    
+    
+    NSDate *date = self.user.createdAt;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    NSString *dateString = [formatter stringFromDate:date];
+    
+    self.dateJoinedLabel.text = [NSString stringWithFormat:@"Joined on %@", dateString];
     [self loadPosts];
     [self setupLayout];
 }
