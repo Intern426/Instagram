@@ -6,6 +6,7 @@
 //
 
 #import "DetailsViewController.h"
+#import "ProfileViewController.h"
 @import Parse;
 
 @interface DetailsViewController ()
@@ -13,12 +14,18 @@
 @property (weak, nonatomic) IBOutlet PFImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
+
 @end
 
 @implementation DetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileImageView setUserInteractionEnabled:YES];
+    
     // Do any additional setup after loading the view.
     PFUser *author = self.post.author;
     self.usernameLabel.text = author.username;
@@ -33,16 +40,36 @@
     formatter.dateStyle = NSDateFormatterMediumStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
     self.dateLabel.text = [formatter stringFromDate:date];
+    
+    if (author[@"image"]) {
+        self.profileImageView.file = author[@"image"];
+        [self.profileImageView loadInBackground];
+    } else {
+        [self.profileImageView setImage:[UIImage imageNamed:@"image_placeholder"]];
+    }
+    
+    self.profileImageView.layer.cornerRadius = 30;
 }
 
-/*
+
+- (void)didTapUserProfile:(UITapGestureRecognizer *)tapGestureRecognizer{
+    [self performSegueWithIdentifier:@"profileSegue" sender:(self.post.author)];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"profileSegue"]) {
+  //      UITabBarController* tabBarController = [segue destinationViewController];
+  //      [tabBarController setSelectedIndex:1];
+        UINavigationController *navigationController = [segue destinationViewController];
+        ProfileViewController *profileViewController = (ProfileViewController*) navigationController.topViewController;
+        profileViewController.user = self.post.author;
+    }
 }
-*/
+
 
 @end

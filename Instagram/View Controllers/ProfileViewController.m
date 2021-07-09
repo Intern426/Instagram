@@ -31,25 +31,35 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+    if (self.user == nil) {
+        self.user = [PFUser currentUser];
+    }
+    
+    
     // Do any additional setup after loading the view.
-    PFUser *user = PFUser.currentUser;
-    self.usernameLabel.text = user.username;
+    self.usernameLabel.text = self.user.username;
     
     [self.loadingIndicator startAnimating];
     
-    NSLog(@"%@", user);
-    if (user[@"image"]) {
-        self.profileView.file = user[@"image"];
+
+    
+    NSLog(@"%@", self.user);
+    if (self.user[@"image"]) {
+        self.profileView.file = self.user[@"image"];
         [self.profileView loadInBackground];
     } else {
         [self.profileView setImage:[UIImage imageNamed:@"image_placeholder"]];
     }
     
-    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPhoto:)];
-    [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
-    [self.profileView setUserInteractionEnabled:YES];
+    self.profileView.layer.cornerRadius = 30;
     
-    
+    if ([self.user.username isEqual:PFUser.currentUser.username]) {
+        UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPhoto:)];
+        [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
+        [self.profileView setUserInteractionEnabled:YES];
+    } else {
+        [self.navigationItem setRightBarButtonItem:nil];
+    }
     [self loadPosts];
     [self setupLayout];
 }
@@ -73,7 +83,7 @@
 -(void) loadPosts{
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"author" containsString:PFUser.currentUser.objectId];
+    [query whereKey:@"author" containsString:self.user.objectId];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
     // Needed to grab the author
@@ -141,7 +151,7 @@
         }];
         [alert addAction:takePictureAction];
         [alert addAction:pickPictureAction];
-
+        
         [self presentViewController:alert animated:YES completion:^{
             // optional code for what happens after the alert controller has finished presenting
         }];
@@ -179,23 +189,18 @@
 
 - (IBAction)didTapSave:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-      currentUser[@"image"] = [Post getPFFileFromImage:self.profileView.image];
-
-      [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-          [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.user[@"image"] = [Post getPFFileFromImage:self.profileView.image];
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (succeeded) {
-          // The PFUser has been saved.
+            // The PFUser has been saved.
             NSLog(@"User's image was successfully saved!");
             self.saveButtonItem.enabled = NO;
         } else {
-          // There was a problem, check error.description
+            // There was a problem, check error.description
             NSLog(@"boo.....%@", error.localizedDescription);
         }
-      }];
-    }
+    }];
 }
-
 
 @end
