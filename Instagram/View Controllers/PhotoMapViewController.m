@@ -8,8 +8,9 @@
 #import "PhotoMapViewController.h"
 #import "Post.h"
 #import "MBProgressHUD.h"
+#import "CustomCameraViewController.h"
 
-@interface PhotoMapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PhotoMapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, CustomCameraViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
 
@@ -38,10 +39,7 @@
         UIAlertAction *takePictureAction = [UIAlertAction actionWithTitle:@"Take a Picture"
                                                                     style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction * _Nonnull action) {
-            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:imagePickerVC animated:YES completion:nil];
-            
-            
+            [self performSegueWithIdentifier:@"pictureSegue" sender:nil];
         }];
         UIAlertAction *pickPictureAction = [UIAlertAction actionWithTitle:@"Select a Picture"
                                                                     style:UIAlertActionStyleDefault
@@ -53,7 +51,6 @@
         [alert addAction:takePictureAction];
         [alert addAction:pickPictureAction];
         [self presentViewController:alert animated:YES completion:^{
-            // optional code for what happens after the alert controller has finished presenting
         }];
     } else {
         NSLog(@"Camera 🚫 available so we will use photo library instead");
@@ -65,7 +62,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    //  UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
     self.photoView.image = originalImage;
@@ -106,14 +102,19 @@
     }];
 }
 
-/*
+- (void)saveTakenImage:(UIImage *)image{
+    self.photoView.image = image;
+}
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     CustomCameraViewController *cameraViewController = [segue destinationViewController];
+     cameraViewController.delegate = self;
  }
- */
+ 
 
 @end

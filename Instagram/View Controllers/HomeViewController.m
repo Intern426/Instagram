@@ -50,7 +50,6 @@ NSString *HeaderViewIdentifier = @"TableViewHeaderView";
 -(void) loadPosts{
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    //  [query whereKey:@"likesCount" greaterThan:@100];
     query.limit = 20;
     
     // Needed to grab the author

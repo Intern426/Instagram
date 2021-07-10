@@ -10,7 +10,6 @@
 		3BFE90FC5555D207EA50F63C /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4933B237B6A82058BD960F86 /* Pods_Instagram.framework */; };
 		8704E37ACDFBBB25831FB434 /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526E146B70BA8E303EA3779E /* Pods_Instagram_InstagramUITests.framework */; };
 		DA7D6BB5C12EE98C3206D491 /* Pods_InstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740C1D7259F397810F6AF927 /* Pods_InstagramTests.framework */; };
-		DE0DB0F22697C52D0045C48A /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0DB0F12697C52D0045C48A /* HeaderView.m */; };
 		DE1AB2E62694E8F000B530D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AB2E52694E8F000B530D9 /* AppDelegate.m */; };
 		DE1AB2E92694E8F000B530D9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AB2E82694E8F000B530D9 /* SceneDelegate.m */; };
 		DE1AB2EF2694E8F000B530D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1AB2ED2694E8F000B530D9 /* Main.storyboard */; };
@@ -25,6 +24,7 @@
 		DE22542E26955252006C9A13 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22542D26955252006C9A13 /* Post.m */; };
 		DE22543226955AD0006C9A13 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22543126955AD0006C9A13 /* PostCell.m */; };
 		DE33C21826951662008B791A /* PhotoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE33C21726951662008B791A /* PhotoMapViewController.m */; };
+		DE552ED1269915540042ECAE /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE552ED0269915540042ECAE /* CustomCameraViewController.m */; };
 		DE932C4C26963CCE009025A0 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE932C4B26963CCE009025A0 /* DetailsViewController.m */; };
 		DEC25DD0269670B500837DA6 /* PictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC25DCF269670B500837DA6 /* PictureCell.m */; };
 		DEC25DD3269671F000837DA6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC25DD2269671F000837DA6 /* ProfileViewController.m */; };
@@ -57,8 +57,6 @@
 		992834DDB13FD8626A98EF39 /* Pods-InstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramTests/Pods-InstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		A6297CB0E94E0F928DC7D013 /* Pods-Instagram-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-InstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instagram-InstagramUITests/Pods-Instagram-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C48A4D3057DA6BB1441D8728 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
-		DE0DB0F02697C52D0045C48A /* HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
-		DE0DB0F12697C52D0045C48A /* HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		DE1AB2E12694E8F000B530D9 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1AB2E42694E8F000B530D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE1AB2E52694E8F000B530D9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +84,8 @@
 		DE22543126955AD0006C9A13 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		DE33C21626951662008B791A /* PhotoMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoMapViewController.h; sourceTree = "<group>"; };
 		DE33C21726951662008B791A /* PhotoMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoMapViewController.m; sourceTree = "<group>"; };
+		DE552ECF269915540042ECAE /* CustomCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCameraViewController.h; sourceTree = "<group>"; };
+		DE552ED0269915540042ECAE /* CustomCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCameraViewController.m; sourceTree = "<group>"; };
 		DE932C4A26963CCE009025A0 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		DE932C4B26963CCE009025A0 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		DEC25DCE269670B500837DA6 /* PictureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureCell.h; sourceTree = "<group>"; };
@@ -223,6 +223,8 @@
 				DE932C4B26963CCE009025A0 /* DetailsViewController.m */,
 				DEC25DD1269671F000837DA6 /* ProfileViewController.h */,
 				DEC25DD2269671F000837DA6 /* ProfileViewController.m */,
+				DE552ECF269915540042ECAE /* CustomCameraViewController.h */,
+				DE552ED0269915540042ECAE /* CustomCameraViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -243,8 +245,6 @@
 				DE22543126955AD0006C9A13 /* PostCell.m */,
 				DEC25DCE269670B500837DA6 /* PictureCell.h */,
 				DEC25DCF269670B500837DA6 /* PictureCell.m */,
-				DE0DB0F02697C52D0045C48A /* HeaderView.h */,
-				DE0DB0F12697C52D0045C48A /* HeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -494,11 +494,11 @@
 				DEC25DD0269670B500837DA6 /* PictureCell.m in Sources */,
 				DE1AB2E92694E8F000B530D9 /* SceneDelegate.m in Sources */,
 				DE1AB31E2694F99A00B530D9 /* LoginViewController.m in Sources */,
-				DE0DB0F22697C52D0045C48A /* HeaderView.m in Sources */,
 				DE932C4C26963CCE009025A0 /* DetailsViewController.m in Sources */,
 				DEC25DD3269671F000837DA6 /* ProfileViewController.m in Sources */,
 				DEF10B262697FBD0002E719D /* PhotoManager.m in Sources */,
 				DE1AB3212694FF1A00B530D9 /* HomeViewController.m in Sources */,
+				DE552ED1269915540042ECAE /* CustomCameraViewController.m in Sources */,
 				DE22542E26955252006C9A13 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

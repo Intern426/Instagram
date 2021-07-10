@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 
 @end
 
@@ -28,6 +29,19 @@
     
     // Do any additional setup after loading the view.
     PFUser *author = self.post.author;
+    [self setupLabels:author];
+    if (author[@"image"]) {
+        self.profileImageView.file = author[@"image"];
+        [self.profileImageView loadInBackground];
+    } else {
+        [self.profileImageView setImage:[UIImage imageNamed:@"image_placeholder"]];
+    }
+    
+    self.profileImageView.layer.cornerRadius = 30;
+}
+
+
+- (void) setupLabels:(PFUser *) author{
     self.usernameLabel.text = author.username;
     
     self.imageView.file = self.post[@"image"];
@@ -41,14 +55,7 @@
     formatter.timeStyle = NSDateFormatterShortStyle;
     self.dateLabel.text = [formatter stringFromDate:date];
     
-    if (author[@"image"]) {
-        self.profileImageView.file = author[@"image"];
-        [self.profileImageView loadInBackground];
-    } else {
-        [self.profileImageView setImage:[UIImage imageNamed:@"image_placeholder"]];
-    }
-    
-    self.profileImageView.layer.cornerRadius = 30;
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post[@"likeCount"]];
 }
 
 
@@ -63,8 +70,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqual:@"profileSegue"]) {
-  //      UITabBarController* tabBarController = [segue destinationViewController];
-  //      [tabBarController setSelectedIndex:1];
         UINavigationController *navigationController = [segue destinationViewController];
         ProfileViewController *profileViewController = (ProfileViewController*) navigationController.topViewController;
         profileViewController.user = self.post.author;
