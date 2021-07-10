@@ -53,6 +53,7 @@ Here's a walkthrough of implemented user stories:
 ![](https://i.imgur.com/pIR7Qok.gif)
 ![](https://i.imgur.com/5OKy6Zc.gif)
 ![](https://i.imgur.com/Sb7uVIP.gif)
+![](https://i.imgur.com/Qk78STa.gif)
 
 
 GIF created with [Kap](https://getkap.co/).
@@ -68,7 +69,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 Describe any challenges encountered while building the app.
 
-Since there were a lot of view controllers that ended up intersecting, it was a little tricky determining (i.e. remembering) which segue to use and where to put the protocols/delegates - causing a lot of exceptions about due to a missing segue identifier or even seguing to the wrong view Controller. Ultiimately, I was able to clean it all up but it was interesting to encounter. 
+Since there were a lot of view controllers that ended up intersecting, it was a little tricky determining (i.e. remembering) which segue to use and where to put the protocols/delegates - causing a lot of exceptions about due to a missing segue identifier or even seguing to the wrong view Controller. Ultiimately, I was able to clean it all up but it was interesting to work around this. 
 
 Figuring out how Parse worked and trying to save the user's profile image was a little difficult at the beginning. It was interesting how gathering any key value with a String or number required you to use [@"key"] but trying to get the author required post.author. This nuance tripped me up for a while when accessing/updating data in author. 
 
